@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\POO VisualBasic\\Proyecto Integrador\\Proyecto Integrador.vbproj": {}
+    "E:\\POO VisualBasic\\ProyectoIntegrador\\Proyecto Integrador.vbproj": {}
   },
   "projects": {
-    "E:\\POO VisualBasic\\Proyecto Integrador\\Proyecto Integrador.vbproj": {
+    "E:\\POO VisualBasic\\ProyectoIntegrador\\Proyecto Integrador.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\POO VisualBasic\\Proyecto Integrador\\Proyecto Integrador.vbproj",
+        "projectUniqueName": "E:\\POO VisualBasic\\ProyectoIntegrador\\Proyecto Integrador.vbproj",
         "projectName": "Proyecto Integrador",
-        "projectPath": "E:\\POO VisualBasic\\Proyecto Integrador\\Proyecto Integrador.vbproj",
+        "projectPath": "E:\\POO VisualBasic\\ProyectoIntegrador\\Proyecto Integrador.vbproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "E:\\POO VisualBasic\\Proyecto Integrador\\obj\\",
+        "outputPath": "E:\\POO VisualBasic\\ProyectoIntegrador\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
