@@ -169,6 +169,7 @@ Partial Class Registro
         Controls.Add(gb_registro)
         Name = "Registro"
         Text = "Registro"
+        WindowState = FormWindowState.Maximized
         gb_registro.ResumeLayout(False)
         gb_registro.PerformLayout()
         gb_volver.ResumeLayout(False)

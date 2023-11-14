@@ -1,9 +1,10 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Security.Policy
+Imports MySql.Data.MySqlClient
 Public Class conexionSQL
-    Private miConexion As New MySqlConnection
+    Public miConexion As New MySqlConnection
     Public miComando As New MySqlCommand
     Public miDataAdapter As MySqlDataAdapter
-    Public miDataSet As DataSet
+    Public miDataTable As DataTable
     Public Conexion_Error As String
 
     Public Sub New(Nombre As String)
@@ -47,21 +48,23 @@ Public Class conexionSQL
     ' Método para verificar las credenciales del vendedor
     Public Function VerificarCredenciales(mailOtelefono As String, password As String) As Boolean
         Try
-            Using con As MySqlConnection = ObtenerConexion()
-                con.Open()
-                Dim query As String = "SELECT COUNT(*) FROM Vendedor WHERE (Mail = @MailOtelefono OR Telefono = @MailOtelefono) AND Password = @Password"
-                Using cmd As New MySqlCommand(query, con)
-                    cmd.Parameters.AddWithValue("@MailOtelefono", mailOtelefono)
-                    cmd.Parameters.AddWithValue("@Password", password)
-                    Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
-                    Return count > 0
-                End Using
-            End Using
+            miComando.CommandText = $"SELECT * FROM Vendedor WHERE (Mail = '{mailOtelefono}' OR Telefono = '{mailOtelefono}') AND Password = '{password}'"
+            Dim leer As MySqlDataReader = miComando.ExecuteReader()
+            ' Verificar si se encontraron resultados
+            If leer.HasRows Then
+                ' Importante: Cerrar el lector después de usarlo
+                leer.Close()
+                Return True
+            Else
+                ' Importante: Cerrar el lector después de usarlo
+                leer.Close()
+                Return False
+            End If
         Catch ex As Exception
-            ' Manejar errores relacionados con la verificación de credenciales
-            Conexion_Error = ex.Message
-            Return False
+            ' Propagar la excepción para manejarla en el código que llama a este método
+            Throw
         End Try
     End Function
+
 
 End Class

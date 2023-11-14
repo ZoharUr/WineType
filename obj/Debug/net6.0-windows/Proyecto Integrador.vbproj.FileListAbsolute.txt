@@ -56,3 +56,32 @@ E:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\refint\Proyecto I
 E:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.pdb
 E:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.genruntimeconfig.cache
 E:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\ref\Proyecto Integrador.dll
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto_Integrador.Form1.resources
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto_Integrador.Registro.resources
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto_Integrador.vistaVendedor.resources
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.vbproj.GenerateResource.cache
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.GeneratedMSBuildEditorConfig.editorconfig
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.AssemblyInfoInputs.cache
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.AssemblyInfo.vb
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.vbproj.CoreCompileInputs.cache
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.dll
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\refint\Proyecto Integrador.dll
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.pdb
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Proyecto Integrador.exe
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Proyecto Integrador.deps.json
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Proyecto Integrador.runtimeconfig.json
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Proyecto Integrador.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Proyecto Integrador.pdb
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Google.Protobuf.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\MySql.Data.dll
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.vbproj.AssemblyReference.cache
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.vbproj.CopyComplete
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\Proyecto Integrador.genruntimeconfig.cache
+F:\POO VisualBasic\ProyectoIntegrador\obj\Debug\net6.0-windows\ref\Proyecto Integrador.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\ZstdNet.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
+F:\POO VisualBasic\ProyectoIntegrador\bin\Debug\net6.0-windows\MySql.Data.xml

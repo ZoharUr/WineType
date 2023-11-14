@@ -1,22 +1,22 @@
-﻿Imports System.Security.Policy
+﻿Imports MySql.Data.MySqlClient
 
 Public Class Registro
 
     Dim Conex As conexionSQL
     Dim nombreDB As String = "SistemaComercial"
 
-    Dim id As String
+    Dim IdVendedor As String
 
     Private Sub Registro_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 
     Private Sub btn_registrarte_Click(sender As Object, e As EventArgs) Handles btn_registrarte.Click
-        Dim SQL As String
+        Dim Sql As String
         Conex = New conexionSQL(nombreDB)
         Try
-            SQL = "INSERT INTO Vendedor VALUES('" + id + "','" + txt_nombre.Text + "','" + txt_telefono.Text + "','" + txt_mail.Text + "','" + txt_password.Text + "')"
-            Conex.EjecutarSQL(SQL)
+            Sql = "INSERT INTO Vendedor VALUES('" + IdVendedor + "','" + txt_nombre.Text.Trim() + "','" + txt_telefono.Text.Trim() + "','" + txt_mail.Text.Trim() + "','" + txt_password.Text.Trim() + "')"
+            Conex.EjecutarSQL(Sql)
             Conex.Dispose()
             MsgBox("Los datos se ingresaron correctamente", MsgBoxStyle.Information, "Insertar Datos")
         Catch ex As Exception
