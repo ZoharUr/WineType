@@ -45,23 +45,18 @@ Public Class conexionSQL
         Return New MySqlConnection(miConexion.ConnectionString)
     End Function
 
-    ' Método para verificar las credenciales del vendedor
     Public Function VerificarCredenciales(mailOtelefono As String, password As String) As Boolean
         Try
             miComando.CommandText = $"SELECT * FROM Vendedor WHERE (Mail = '{mailOtelefono}' OR Telefono = '{mailOtelefono}') AND Password = '{password}'"
             Dim leer As MySqlDataReader = miComando.ExecuteReader()
-            ' Verificar si se encontraron resultados
             If leer.HasRows Then
-                ' Importante: Cerrar el lector después de usarlo
                 leer.Close()
                 Return True
             Else
-                ' Importante: Cerrar el lector después de usarlo
                 leer.Close()
                 Return False
             End If
         Catch ex As Exception
-            ' Propagar la excepción para manejarla en el código que llama a este método
             Throw
         End Try
     End Function

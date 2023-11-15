@@ -4,12 +4,8 @@ Public Class Registro
 
     Dim Conex As conexionSQL
     Dim nombreDB As String = "SistemaComercial"
-
     Dim IdVendedor As String
 
-    Private Sub Registro_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub btn_registrarte_Click(sender As Object, e As EventArgs) Handles btn_registrarte.Click
         Dim Sql As String

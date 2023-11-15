@@ -3,6 +3,7 @@ Public Class Form1
 
     Dim Conex As conexionSQL
     Dim nombreDB As String = "SistemaComercial"
+    Public idUsuarioActual As Integer
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gb_iniciarSesion.Enabled = False
@@ -14,7 +15,6 @@ Public Class Form1
             MsgBox(Conex.Conexion_Error)
         Else
             Try
-                ' Intenta seleccionar todos los registros de la tabla Vendedor en la base de datos existente.
                 Dim Sql As String = $"USE {nombreDB}; SELECT * FROM Vendedor;"
                 Conex.EjecutarSQL(Sql)
                 Conex.Dispose()
@@ -50,18 +50,26 @@ Public Class Form1
             Dim Sql As String = $"USE {nombreDB};"
             Conex.EjecutarSQL(Sql)
 
-            If String.IsNullOrEmpty(txt_user.Text) Or String.IsNullOrEmpty(txt_password.Text) Then
+            If txt_user.Text = "" Or txt_password.Text = "" Then
                 MessageBox.Show("Ingrese el mail o teléfono y la contraseña.", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            End If
-            If Conex.VerificarCredenciales(txt_user.Text.Trim(), txt_password.Text.Trim()) Then
-                MessageBox.Show("Inicio de sesión exitoso.", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                LimpiarSesion()
-                vistaVendedor.Show()
-                Me.Hide()
             Else
-                LimpiarSesion()
-                MessageBox.Show("Credenciales incorrectas. Verifique el mail o teléfono y la contraseña.", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If Conex.VerificarCredenciales(txt_user.Text.Trim(), txt_password.Text.Trim()) Then
+                    MessageBox.Show("Inicio de sesión exitoso.", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    Sql = $"SELECT ID_Vendedor FROM Vendedor WHERE Mail = '{txt_user.Text.Trim()}' OR Telefono = '{txt_user.Text.Trim()}'"
+                    Conex.miComando = New MySqlCommand(Sql, Conex.miConexion)
+                    Dim resultado As Object = Conex.miComando.ExecuteScalar()
+                    idUsuarioActual = Convert.ToInt32(resultado)
+
+                    'MsgBox(idUsuarioActual)
+
+                    LimpiarSesion()
+                    vistaVendedor.Show()
+                    Me.Hide()
+                Else
+                    LimpiarSesion()
+                    MessageBox.Show("Credenciales incorrectas. Verifique el mail o teléfono y la contraseña.", "Inicio de Sesión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show($"Error al iniciar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
