@@ -148,6 +148,7 @@ Partial Class Form1
         Controls.Add(gb_crearCuenta)
         Controls.Add(gb_iniciarSesion)
         Name = "Form1"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Login"
         WindowState = FormWindowState.Maximized
         gb_iniciarSesion.ResumeLayout(False)

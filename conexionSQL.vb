@@ -1,6 +1,7 @@
 ﻿Imports System.Security.Policy
 Imports MySql.Data.MySqlClient
 Public Class conexionSQL
+
     Public miConexion As New MySqlConnection
     Public miComando As New MySqlCommand
     Public miDataAdapter As MySqlDataAdapter
@@ -34,6 +35,11 @@ Public Class conexionSQL
         miComando.CommandText = SentenciaSQL
         miComando.ExecuteNonQuery()
     End Sub
+
+    Public Function EjecutarSQLResp(SentenciaSQL As String)
+        miComando.CommandText = SentenciaSQL
+        Return miComando.ExecuteScalar()
+    End Function
 
     Public Sub Dispose()
         miConexion.Close()

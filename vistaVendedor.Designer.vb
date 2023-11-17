@@ -29,35 +29,38 @@ Partial Class vistaVendedor
         btn_productos = New Button()
         gb_mostrarOpcion = New GroupBox()
         gb_historial = New GroupBox()
+        dgv_detallesVenta = New DataGridView()
         dgv_historialVentas = New DataGridView()
         gb_ventas = New GroupBox()
-        txt_idCliente = New TextBox()
         txt_cantidadVender = New TextBox()
-        txt_idProdVenta = New TextBox()
-        btn_cancelar = New Button()
-        btn_vender = New Button()
+        lb_detalles = New ListBox()
+        dgv_prductosVenta = New DataGridView()
+        btn_cancelarVenta = New Button()
+        btn_confirmarVenta = New Button()
         dgv_clientes = New DataGridView()
         gb_producto = New GroupBox()
-        btn_eliminar = New Button()
-        dgv_productos = New DataGridView()
-        btn_modificar = New Button()
-        btn_eliminarProducto = New Button()
-        txt_idProducto = New TextBox()
-        btn_modificarProductos = New Button()
-        btn_agregar = New Button()
-        btn_agregarProductos = New Button()
-        txt_stock = New TextBox()
-        txt_precio = New TextBox()
-        txt_descripcion = New TextBox()
+        dgv_verProductos = New DataGridView()
+        GroupBox4 = New GroupBox()
+        btn_eliminarProd = New Button()
+        GroupBox2 = New GroupBox()
+        btn_modificarProd = New Button()
+        btn_crearProd = New Button()
+        txt_stockProd = New TextBox()
+        txt_precioProd = New TextBox()
+        txt_descripcionProd = New TextBox()
         Button3 = New Button()
         GroupBox1.SuspendLayout()
         gb_mostrarOpcion.SuspendLayout()
         gb_historial.SuspendLayout()
+        CType(dgv_detallesVenta, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgv_historialVentas, ComponentModel.ISupportInitialize).BeginInit()
         gb_ventas.SuspendLayout()
+        CType(dgv_prductosVenta, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgv_clientes, ComponentModel.ISupportInitialize).BeginInit()
         gb_producto.SuspendLayout()
-        CType(dgv_productos, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgv_verProductos, ComponentModel.ISupportInitialize).BeginInit()
+        GroupBox4.SuspendLayout()
+        GroupBox2.SuspendLayout()
         SuspendLayout()
         ' 
         ' btn_cerrarSesion
@@ -65,7 +68,7 @@ Partial Class vistaVendedor
         btn_cerrarSesion.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         btn_cerrarSesion.FlatStyle = FlatStyle.Popup
         btn_cerrarSesion.Font = New Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_cerrarSesion.Location = New Point(6, 467)
+        btn_cerrarSesion.Location = New Point(6, 589)
         btn_cerrarSesion.Name = "btn_cerrarSesion"
         btn_cerrarSesion.Size = New Size(262, 61)
         btn_cerrarSesion.TabIndex = 0
@@ -81,7 +84,7 @@ Partial Class vistaVendedor
         GroupBox1.Controls.Add(btn_productos)
         GroupBox1.Location = New Point(12, 12)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(274, 534)
+        GroupBox1.Size = New Size(274, 656)
         GroupBox1.TabIndex = 1
         GroupBox1.TabStop = False
         ' 
@@ -130,19 +133,31 @@ Partial Class vistaVendedor
         gb_mostrarOpcion.Controls.Add(Button3)
         gb_mostrarOpcion.Location = New Point(292, 12)
         gb_mostrarOpcion.Name = "gb_mostrarOpcion"
-        gb_mostrarOpcion.Size = New Size(897, 534)
+        gb_mostrarOpcion.Size = New Size(983, 656)
         gb_mostrarOpcion.TabIndex = 4
         gb_mostrarOpcion.TabStop = False
         ' 
         ' gb_historial
         ' 
         gb_historial.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        gb_historial.Controls.Add(dgv_detallesVenta)
         gb_historial.Controls.Add(dgv_historialVentas)
-        gb_historial.Location = New Point(6, 382)
+        gb_historial.Location = New Point(6, 542)
         gb_historial.Name = "gb_historial"
-        gb_historial.Size = New Size(885, 146)
+        gb_historial.Size = New Size(971, 108)
         gb_historial.TabIndex = 10
         gb_historial.TabStop = False
+        ' 
+        ' dgv_detallesVenta
+        ' 
+        dgv_detallesVenta.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
+        dgv_detallesVenta.BackgroundColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
+        dgv_detallesVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgv_detallesVenta.Location = New Point(462, 22)
+        dgv_detallesVenta.Name = "dgv_detallesVenta"
+        dgv_detallesVenta.RowTemplate.Height = 25
+        dgv_detallesVenta.Size = New Size(503, 80)
+        dgv_detallesVenta.TabIndex = 5
         ' 
         ' dgv_historialVentas
         ' 
@@ -152,229 +167,207 @@ Partial Class vistaVendedor
         dgv_historialVentas.Location = New Point(6, 22)
         dgv_historialVentas.Name = "dgv_historialVentas"
         dgv_historialVentas.RowTemplate.Height = 25
-        dgv_historialVentas.Size = New Size(873, 118)
-        dgv_historialVentas.TabIndex = 0
+        dgv_historialVentas.Size = New Size(450, 80)
+        dgv_historialVentas.TabIndex = 4
         ' 
         ' gb_ventas
         ' 
         gb_ventas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        gb_ventas.Controls.Add(txt_idCliente)
         gb_ventas.Controls.Add(txt_cantidadVender)
-        gb_ventas.Controls.Add(txt_idProdVenta)
-        gb_ventas.Controls.Add(btn_cancelar)
-        gb_ventas.Controls.Add(btn_vender)
+        gb_ventas.Controls.Add(lb_detalles)
+        gb_ventas.Controls.Add(dgv_prductosVenta)
+        gb_ventas.Controls.Add(btn_cancelarVenta)
+        gb_ventas.Controls.Add(btn_confirmarVenta)
         gb_ventas.Controls.Add(dgv_clientes)
-        gb_ventas.Location = New Point(6, 261)
+        gb_ventas.Location = New Point(6, 338)
         gb_ventas.Name = "gb_ventas"
-        gb_ventas.Size = New Size(885, 115)
+        gb_ventas.Size = New Size(971, 198)
         gb_ventas.TabIndex = 9
         gb_ventas.TabStop = False
         ' 
-        ' txt_idCliente
-        ' 
-        txt_idCliente.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        txt_idCliente.Location = New Point(211, 14)
-        txt_idCliente.Name = "txt_idCliente"
-        txt_idCliente.PlaceholderText = "ID CLIENTE"
-        txt_idCliente.Size = New Size(72, 23)
-        txt_idCliente.TabIndex = 9
-        ' 
         ' txt_cantidadVender
         ' 
-        txt_cantidadVender.Location = New Point(112, 14)
+        txt_cantidadVender.Anchor = AnchorStyles.Bottom
+        txt_cantidadVender.Location = New Point(489, 169)
         txt_cantidadVender.Name = "txt_cantidadVender"
-        txt_cantidadVender.PlaceholderText = "Cantidad"
-        txt_cantidadVender.Size = New Size(58, 23)
-        txt_cantidadVender.TabIndex = 8
+        txt_cantidadVender.PlaceholderText = "Cantidad de producto a vender"
+        txt_cantidadVender.Size = New Size(194, 23)
+        txt_cantidadVender.TabIndex = 10
         ' 
-        ' txt_idProdVenta
+        ' lb_detalles
         ' 
-        txt_idProdVenta.Location = New Point(6, 14)
-        txt_idProdVenta.Name = "txt_idProdVenta"
-        txt_idProdVenta.PlaceholderText = "ID PRODUCTO"
-        txt_idProdVenta.Size = New Size(100, 23)
-        txt_idProdVenta.TabIndex = 8
+        lb_detalles.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
+        lb_detalles.FormattingEnabled = True
+        lb_detalles.ItemHeight = 15
+        lb_detalles.Location = New Point(427, 129)
+        lb_detalles.Name = "lb_detalles"
+        lb_detalles.Size = New Size(538, 34)
+        lb_detalles.TabIndex = 9
         ' 
-        ' btn_cancelar
+        ' dgv_prductosVenta
         ' 
-        btn_cancelar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btn_cancelar.FlatStyle = FlatStyle.Popup
-        btn_cancelar.Location = New Point(127, 86)
-        btn_cancelar.Name = "btn_cancelar"
-        btn_cancelar.Size = New Size(75, 23)
-        btn_cancelar.TabIndex = 2
-        btn_cancelar.Text = "Cancelar"
-        btn_cancelar.UseVisualStyleBackColor = True
+        dgv_prductosVenta.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        dgv_prductosVenta.BackgroundColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
+        dgv_prductosVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgv_prductosVenta.Location = New Point(427, 22)
+        dgv_prductosVenta.Name = "dgv_prductosVenta"
+        dgv_prductosVenta.RowTemplate.Height = 25
+        dgv_prductosVenta.Size = New Size(538, 101)
+        dgv_prductosVenta.TabIndex = 8
         ' 
-        ' btn_vender
+        ' btn_cancelarVenta
         ' 
-        btn_vender.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btn_vender.FlatStyle = FlatStyle.Popup
-        btn_vender.Location = New Point(208, 86)
-        btn_vender.Name = "btn_vender"
-        btn_vender.Size = New Size(75, 23)
-        btn_vender.TabIndex = 1
-        btn_vender.Text = "Vender"
-        btn_vender.UseVisualStyleBackColor = True
+        btn_cancelarVenta.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_cancelarVenta.FlatAppearance.BorderColor = Color.Red
+        btn_cancelarVenta.FlatStyle = FlatStyle.Flat
+        btn_cancelarVenta.Location = New Point(689, 169)
+        btn_cancelarVenta.Name = "btn_cancelarVenta"
+        btn_cancelarVenta.Size = New Size(140, 23)
+        btn_cancelarVenta.TabIndex = 7
+        btn_cancelarVenta.Text = "Cancelar venta"
+        btn_cancelarVenta.UseVisualStyleBackColor = True
+        ' 
+        ' btn_confirmarVenta
+        ' 
+        btn_confirmarVenta.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_confirmarVenta.FlatAppearance.BorderColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
+        btn_confirmarVenta.FlatStyle = FlatStyle.Flat
+        btn_confirmarVenta.Location = New Point(835, 169)
+        btn_confirmarVenta.Name = "btn_confirmarVenta"
+        btn_confirmarVenta.Size = New Size(130, 23)
+        btn_confirmarVenta.TabIndex = 6
+        btn_confirmarVenta.Text = "Confirmar venta"
+        btn_confirmarVenta.UseVisualStyleBackColor = True
         ' 
         ' dgv_clientes
         ' 
-        dgv_clientes.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
+        dgv_clientes.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgv_clientes.BackgroundColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
         dgv_clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgv_clientes.Location = New Point(289, 14)
+        dgv_clientes.Location = New Point(6, 22)
         dgv_clientes.Name = "dgv_clientes"
         dgv_clientes.RowTemplate.Height = 25
-        dgv_clientes.Size = New Size(590, 95)
-        dgv_clientes.TabIndex = 0
+        dgv_clientes.Size = New Size(415, 170)
+        dgv_clientes.TabIndex = 5
         ' 
         ' gb_producto
         ' 
         gb_producto.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        gb_producto.Controls.Add(btn_eliminar)
-        gb_producto.Controls.Add(dgv_productos)
-        gb_producto.Controls.Add(btn_modificar)
-        gb_producto.Controls.Add(btn_eliminarProducto)
-        gb_producto.Controls.Add(txt_idProducto)
-        gb_producto.Controls.Add(btn_modificarProductos)
-        gb_producto.Controls.Add(btn_agregar)
-        gb_producto.Controls.Add(btn_agregarProductos)
-        gb_producto.Controls.Add(txt_stock)
-        gb_producto.Controls.Add(txt_precio)
-        gb_producto.Controls.Add(txt_descripcion)
+        gb_producto.Controls.Add(dgv_verProductos)
+        gb_producto.Controls.Add(GroupBox4)
+        gb_producto.Controls.Add(GroupBox2)
         gb_producto.Location = New Point(6, 22)
         gb_producto.Name = "gb_producto"
-        gb_producto.Size = New Size(885, 233)
+        gb_producto.Size = New Size(971, 310)
         gb_producto.TabIndex = 8
         gb_producto.TabStop = False
         ' 
-        ' btn_eliminar
+        ' dgv_verProductos
         ' 
-        btn_eliminar.Anchor = AnchorStyles.Bottom
-        btn_eliminar.FlatStyle = FlatStyle.Popup
-        btn_eliminar.Font = New Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_eliminar.Location = New Point(549, 146)
-        btn_eliminar.Name = "btn_eliminar"
-        btn_eliminar.Size = New Size(136, 30)
-        btn_eliminar.TabIndex = 7
-        btn_eliminar.Text = "Eliminar"
-        btn_eliminar.UseVisualStyleBackColor = True
+        dgv_verProductos.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        dgv_verProductos.BackgroundColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
+        dgv_verProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgv_verProductos.Location = New Point(377, 22)
+        dgv_verProductos.Name = "dgv_verProductos"
+        dgv_verProductos.RowTemplate.Height = 25
+        dgv_verProductos.Size = New Size(588, 282)
+        dgv_verProductos.TabIndex = 3
         ' 
-        ' dgv_productos
+        ' GroupBox4
         ' 
-        dgv_productos.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        dgv_productos.BackgroundColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
-        dgv_productos.BorderStyle = BorderStyle.Fixed3D
-        dgv_productos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgv_productos.Location = New Point(6, 96)
-        dgv_productos.Name = "dgv_productos"
-        dgv_productos.ReadOnly = True
-        dgv_productos.RowTemplate.Height = 25
-        dgv_productos.Size = New Size(873, 44)
-        dgv_productos.TabIndex = 7
+        GroupBox4.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox4.Controls.Add(btn_eliminarProd)
+        GroupBox4.Location = New Point(6, 188)
+        GroupBox4.Name = "GroupBox4"
+        GroupBox4.Size = New Size(365, 116)
+        GroupBox4.TabIndex = 2
+        GroupBox4.TabStop = False
         ' 
-        ' btn_modificar
+        ' btn_eliminarProd
         ' 
-        btn_modificar.Anchor = AnchorStyles.Bottom
-        btn_modificar.FlatStyle = FlatStyle.Popup
-        btn_modificar.Font = New Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_modificar.Location = New Point(372, 146)
-        btn_modificar.Name = "btn_modificar"
-        btn_modificar.Size = New Size(136, 30)
-        btn_modificar.TabIndex = 6
-        btn_modificar.Text = "Modificar"
-        btn_modificar.UseVisualStyleBackColor = True
+        btn_eliminarProd.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        btn_eliminarProd.FlatStyle = FlatStyle.Popup
+        btn_eliminarProd.Location = New Point(6, 22)
+        btn_eliminarProd.Name = "btn_eliminarProd"
+        btn_eliminarProd.Size = New Size(353, 88)
+        btn_eliminarProd.TabIndex = 5
+        btn_eliminarProd.Text = "ELIMINAR PRODUCTO"
+        btn_eliminarProd.UseVisualStyleBackColor = True
         ' 
-        ' btn_eliminarProducto
+        ' GroupBox2
         ' 
-        btn_eliminarProducto.Anchor = AnchorStyles.Top
-        btn_eliminarProducto.FlatStyle = FlatStyle.Popup
-        btn_eliminarProducto.Font = New Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_eliminarProducto.Location = New Point(528, 22)
-        btn_eliminarProducto.Name = "btn_eliminarProducto"
-        btn_eliminarProducto.Size = New Size(157, 32)
-        btn_eliminarProducto.TabIndex = 6
-        btn_eliminarProducto.Text = "Eliminar Productos"
-        btn_eliminarProducto.UseVisualStyleBackColor = True
+        GroupBox2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox2.Controls.Add(btn_modificarProd)
+        GroupBox2.Controls.Add(btn_crearProd)
+        GroupBox2.Controls.Add(txt_stockProd)
+        GroupBox2.Controls.Add(txt_precioProd)
+        GroupBox2.Controls.Add(txt_descripcionProd)
+        GroupBox2.Location = New Point(6, 22)
+        GroupBox2.Name = "GroupBox2"
+        GroupBox2.Size = New Size(365, 136)
+        GroupBox2.TabIndex = 0
+        GroupBox2.TabStop = False
         ' 
-        ' txt_idProducto
+        ' btn_modificarProd
         ' 
-        txt_idProducto.Anchor = AnchorStyles.Top
-        txt_idProducto.Location = New Point(92, 67)
-        txt_idProducto.Name = "txt_idProducto"
-        txt_idProducto.PlaceholderText = "ID PRODUCTO"
-        txt_idProducto.Size = New Size(100, 23)
-        txt_idProducto.TabIndex = 5
+        btn_modificarProd.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn_modificarProd.FlatStyle = FlatStyle.Popup
+        btn_modificarProd.Location = New Point(190, 75)
+        btn_modificarProd.Name = "btn_modificarProd"
+        btn_modificarProd.Size = New Size(142, 55)
+        btn_modificarProd.TabIndex = 4
+        btn_modificarProd.Text = "Modificar"
+        btn_modificarProd.UseVisualStyleBackColor = True
         ' 
-        ' btn_modificarProductos
+        ' btn_crearProd
         ' 
-        btn_modificarProductos.Anchor = AnchorStyles.Top
-        btn_modificarProductos.FlatStyle = FlatStyle.Popup
-        btn_modificarProductos.Font = New Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_modificarProductos.Location = New Point(357, 22)
-        btn_modificarProductos.Name = "btn_modificarProductos"
-        btn_modificarProductos.Size = New Size(165, 32)
-        btn_modificarProductos.TabIndex = 5
-        btn_modificarProductos.Text = "Modificar Productos"
-        btn_modificarProductos.UseVisualStyleBackColor = True
+        btn_crearProd.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        btn_crearProd.FlatStyle = FlatStyle.Popup
+        btn_crearProd.Location = New Point(20, 75)
+        btn_crearProd.Name = "btn_crearProd"
+        btn_crearProd.Size = New Size(164, 55)
+        btn_crearProd.TabIndex = 3
+        btn_crearProd.Text = "Crear"
+        btn_crearProd.UseVisualStyleBackColor = True
         ' 
-        ' btn_agregar
+        ' txt_stockProd
         ' 
-        btn_agregar.Anchor = AnchorStyles.Bottom
-        btn_agregar.FlatStyle = FlatStyle.Popup
-        btn_agregar.Font = New Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_agregar.Location = New Point(199, 146)
-        btn_agregar.Name = "btn_agregar"
-        btn_agregar.Size = New Size(136, 30)
-        btn_agregar.TabIndex = 4
-        btn_agregar.Text = "Agregar"
-        btn_agregar.UseVisualStyleBackColor = True
+        txt_stockProd.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        txt_stockProd.Location = New Point(259, 28)
+        txt_stockProd.Multiline = True
+        txt_stockProd.Name = "txt_stockProd"
+        txt_stockProd.PlaceholderText = "Stock"
+        txt_stockProd.Size = New Size(100, 33)
+        txt_stockProd.TabIndex = 2
+        txt_stockProd.TextAlign = HorizontalAlignment.Center
         ' 
-        ' btn_agregarProductos
+        ' txt_precioProd
         ' 
-        btn_agregarProductos.Anchor = AnchorStyles.Top
-        btn_agregarProductos.FlatStyle = FlatStyle.Popup
-        btn_agregarProductos.Font = New Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_agregarProductos.Location = New Point(199, 22)
-        btn_agregarProductos.Name = "btn_agregarProductos"
-        btn_agregarProductos.Size = New Size(152, 32)
-        btn_agregarProductos.TabIndex = 4
-        btn_agregarProductos.Text = "Agregar Productos"
-        btn_agregarProductos.UseVisualStyleBackColor = True
+        txt_precioProd.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txt_precioProd.Location = New Point(157, 28)
+        txt_precioProd.Multiline = True
+        txt_precioProd.Name = "txt_precioProd"
+        txt_precioProd.PlaceholderText = "Precio Unitario"
+        txt_precioProd.Size = New Size(96, 33)
+        txt_precioProd.TabIndex = 1
+        txt_precioProd.TextAlign = HorizontalAlignment.Center
         ' 
-        ' txt_stock
+        ' txt_descripcionProd
         ' 
-        txt_stock.Anchor = AnchorStyles.Top
-        txt_stock.Location = New Point(585, 67)
-        txt_stock.Name = "txt_stock"
-        txt_stock.PlaceholderText = "Stock"
-        txt_stock.Size = New Size(100, 23)
-        txt_stock.TabIndex = 2
-        ' 
-        ' txt_precio
-        ' 
-        txt_precio.Anchor = AnchorStyles.Top
-        txt_precio.Location = New Point(422, 67)
-        txt_precio.Name = "txt_precio"
-        txt_precio.PlaceholderText = "Precio"
-        txt_precio.Size = New Size(100, 23)
-        txt_precio.TabIndex = 1
-        ' 
-        ' txt_descripcion
-        ' 
-        txt_descripcion.Anchor = AnchorStyles.Top
-        txt_descripcion.Location = New Point(251, 67)
-        txt_descripcion.Name = "txt_descripcion"
-        txt_descripcion.PlaceholderText = "Descripcion"
-        txt_descripcion.Size = New Size(100, 23)
-        txt_descripcion.TabIndex = 0
+        txt_descripcionProd.Location = New Point(6, 28)
+        txt_descripcionProd.Multiline = True
+        txt_descripcionProd.Name = "txt_descripcionProd"
+        txt_descripcionProd.PlaceholderText = "Descripcion"
+        txt_descripcionProd.Size = New Size(145, 33)
+        txt_descripcionProd.TabIndex = 0
+        txt_descripcionProd.TextAlign = HorizontalAlignment.Center
         ' 
         ' Button3
         ' 
         Button3.Anchor = AnchorStyles.Bottom
         Button3.FlatStyle = FlatStyle.Popup
         Button3.Font = New Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point)
-        Button3.Location = New Point(354, 672)
+        Button3.Location = New Point(397, 794)
         Button3.Name = "Button3"
         Button3.Size = New Size(262, 61)
         Button3.TabIndex = 0
@@ -386,7 +379,7 @@ Partial Class vistaVendedor
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
-        ClientSize = New Size(1201, 558)
+        ClientSize = New Size(1287, 680)
         Controls.Add(gb_mostrarOpcion)
         Controls.Add(GroupBox1)
         Name = "vistaVendedor"
@@ -395,13 +388,17 @@ Partial Class vistaVendedor
         GroupBox1.ResumeLayout(False)
         gb_mostrarOpcion.ResumeLayout(False)
         gb_historial.ResumeLayout(False)
+        CType(dgv_detallesVenta, ComponentModel.ISupportInitialize).EndInit()
         CType(dgv_historialVentas, ComponentModel.ISupportInitialize).EndInit()
         gb_ventas.ResumeLayout(False)
         gb_ventas.PerformLayout()
+        CType(dgv_prductosVenta, ComponentModel.ISupportInitialize).EndInit()
         CType(dgv_clientes, ComponentModel.ISupportInitialize).EndInit()
         gb_producto.ResumeLayout(False)
-        gb_producto.PerformLayout()
-        CType(dgv_productos, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgv_verProductos, ComponentModel.ISupportInitialize).EndInit()
+        GroupBox4.ResumeLayout(False)
+        GroupBox2.ResumeLayout(False)
+        GroupBox2.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -412,26 +409,25 @@ Partial Class vistaVendedor
     Friend WithEvents btn_productos As Button
     Friend WithEvents gb_mostrarOpcion As GroupBox
     Friend WithEvents Button3 As Button
-    Friend WithEvents btn_agregarProductos As Button
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents btn_eliminarProducto As Button
-    Friend WithEvents btn_modificarProductos As Button
-    Friend WithEvents dgv_productos As DataGridView
     Friend WithEvents gb_producto As GroupBox
-    Friend WithEvents txt_stock As TextBox
-    Friend WithEvents txt_precio As TextBox
-    Friend WithEvents txt_descripcion As TextBox
-    Friend WithEvents btn_agregar As Button
-    Friend WithEvents txt_idProducto As TextBox
-    Friend WithEvents btn_eliminar As Button
-    Friend WithEvents btn_modificar As Button
     Friend WithEvents gb_ventas As GroupBox
     Friend WithEvents gb_historial As GroupBox
+    Friend WithEvents dgv_verProductos As DataGridView
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents txt_descripcionProd As TextBox
+    Friend WithEvents txt_stockProd As TextBox
+    Friend WithEvents txt_precioProd As TextBox
+    Friend WithEvents btn_crearProd As Button
+    Friend WithEvents btn_eliminarProd As Button
+    Friend WithEvents btn_modificarProd As Button
     Friend WithEvents dgv_historialVentas As DataGridView
     Friend WithEvents dgv_clientes As DataGridView
-    Friend WithEvents btn_cancelar As Button
-    Friend WithEvents btn_vender As Button
+    Friend WithEvents dgv_detallesVenta As DataGridView
+    Friend WithEvents btn_cancelarVenta As Button
+    Friend WithEvents btn_confirmarVenta As Button
+    Friend WithEvents dgv_prductosVenta As DataGridView
+    Friend WithEvents lb_detalles As ListBox
     Friend WithEvents txt_cantidadVender As TextBox
-    Friend WithEvents txt_idProdVenta As TextBox
-    Friend WithEvents txt_idCliente As TextBox
 End Class
