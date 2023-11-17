@@ -6,7 +6,6 @@ Public Class Registro
     Dim nombreDB As String = Form1.nombreDB
     Dim IdVendedor As String
 
-
     Private Sub btn_registrarte_Click(sender As Object, e As EventArgs) Handles btn_registrarte.Click
         If txt_telefono.Text = "" Or txt_mail.Text = "" Or txt_nombre.Text = "" Or txt_password.Text = "" Then
             MsgBox("ERROR: Asegurese de completar todos los campos")

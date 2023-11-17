@@ -18,19 +18,18 @@ Public Class Form1
                 Dim Sql As String = $"USE {nombreDB}; SELECT * FROM Vendedor;"
                 Conex.EjecutarSQL(Sql)
                 Conex.Dispose()
-                'MsgBox("La base de datos ya existe.")
+
                 gb_iniciarSesion.Enabled = True
                 gb_crearCuenta.Enabled = True
             Catch ex As Exception
                 MsgBox("No se encontró la base de datos. Intentaré crearla.")
 
-                ' Intenta crear la base de datos y las tablas.
                 Dim Sql As String = $"CREATE DATABASE {nombreDB}; USE {nombreDB};
                                      CREATE TABLE Vendedor (ID_Vendedor TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY, Nombre VARCHAR(30) NOT NULL, Telefono VARCHAR(15) NOT NULL UNIQUE, Mail VARCHAR(30) NOT NULL UNIQUE, Password VARCHAR(20) NOT NULL);
                                      CREATE TABLE Producto (ID_Producto TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY, Descripcion VARCHAR(50) NOT NULL, Precio INT NOT NULL, Stock SMALLINT NOT NULL);
                                      CREATE TABLE Cliente (ID_Cliente TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY, Nombre VARCHAR(30) NOT NULL, Direccion VARCHAR(40) NOT NULL, Telefono VARCHAR(15) NOT NULL, Mail VARCHAR(30) NOT NULL);
                                      CREATE TABLE Venta (ID_Venta TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY, Fecha DATE, ID_Vendedor TINYINT, ID_Cliente TINYINT, FOREIGN KEY (ID_Vendedor) REFERENCES Vendedor(ID_Vendedor), FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente));
-                                     CREATE TABLE VentaProducto(ID_VentaProducto TINYINT NOT NULL AUTO_INCREMENT, ID_Venta TINYINT NOT NULL, ID_Producto TINYINT NOT NULL, CantidadVendida INT NOT NULL, PRIMARY KEY (ID_VentaProducto, ID_Venta, ID_Producto), FOREIGN KEY(ID_Venta) References Venta(ID_Venta), FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto));"
+                                     CREATE TABLE VentaProducto(ID_VentaProducto TINYINT NOT NULL AUTO_INCREMENT, ID_Venta TINYINT NOT NULL, ID_Producto TINYINT NOT NULL, CantidadVendida INT NOT NULL, Importes DECIMAL(10,2), PRIMARY KEY (ID_VentaProducto, ID_Venta, ID_Producto), FOREIGN KEY(ID_Venta) References Venta(ID_Venta), FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto));"
 
                 Try
                     Conex.EjecutarSQL(Sql)
@@ -100,8 +99,6 @@ Public Class Form1
                     Conex.miComando = New MySqlCommand(Sql, Conex.miConexion)
                     Dim resultado As Object = Conex.miComando.ExecuteScalar()
                     idUsuarioActual = Convert.ToInt32(resultado)
-
-                    'MsgBox(idUsuarioActual)
 
                     LimpiarSesion()
                     vistaVendedor.Show()

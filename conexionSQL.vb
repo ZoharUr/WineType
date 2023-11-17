@@ -19,7 +19,6 @@ Public Class conexionSQL
         End Try
     End Sub
 
-
     Public Sub New()
         Try
             miConexion.ConnectionString = "Server=127.0.0.1;Uid=root;"
@@ -47,21 +46,13 @@ Public Class conexionSQL
         miComando.Dispose()
     End Sub
 
-    Public Function ObtenerConexion() As MySqlConnection
-        Return New MySqlConnection(miConexion.ConnectionString)
-    End Function
-
     Public Function VerificarCredenciales(mailOtelefono As String, password As String) As Boolean
+        Dim sql As String = $"SELECT COUNT(*) FROM Vendedor WHERE (Mail = '{mailOtelefono}' OR Telefono = '{mailOtelefono}') AND Password = '{password}'"
         Try
-            miComando.CommandText = $"SELECT * FROM Vendedor WHERE (Mail = '{mailOtelefono}' OR Telefono = '{mailOtelefono}') AND Password = '{password}'"
-            Dim leer As MySqlDataReader = miComando.ExecuteReader()
-            If leer.HasRows Then
-                leer.Close()
-                Return True
-            Else
-                leer.Close()
-                Return False
-            End If
+            miComando.CommandText = sql
+            Dim count As Integer = Convert.ToInt32(miComando.ExecuteScalar())
+
+            Return count > 0
         Catch ex As Exception
             Throw
         End Try

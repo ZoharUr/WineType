@@ -29,6 +29,7 @@ Partial Class vistaVendedor
         btn_productos = New Button()
         gb_mostrarOpcion = New GroupBox()
         gb_historial = New GroupBox()
+        txt_totalVenta = New TextBox()
         dgv_detallesVenta = New DataGridView()
         dgv_historialVentas = New DataGridView()
         gb_ventas = New GroupBox()
@@ -68,7 +69,7 @@ Partial Class vistaVendedor
         btn_cerrarSesion.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         btn_cerrarSesion.FlatStyle = FlatStyle.Popup
         btn_cerrarSesion.Font = New Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point)
-        btn_cerrarSesion.Location = New Point(6, 589)
+        btn_cerrarSesion.Location = New Point(6, 654)
         btn_cerrarSesion.Name = "btn_cerrarSesion"
         btn_cerrarSesion.Size = New Size(262, 61)
         btn_cerrarSesion.TabIndex = 0
@@ -84,7 +85,7 @@ Partial Class vistaVendedor
         GroupBox1.Controls.Add(btn_productos)
         GroupBox1.Location = New Point(12, 12)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(274, 656)
+        GroupBox1.Size = New Size(274, 721)
         GroupBox1.TabIndex = 1
         GroupBox1.TabStop = False
         ' 
@@ -133,20 +134,31 @@ Partial Class vistaVendedor
         gb_mostrarOpcion.Controls.Add(Button3)
         gb_mostrarOpcion.Location = New Point(292, 12)
         gb_mostrarOpcion.Name = "gb_mostrarOpcion"
-        gb_mostrarOpcion.Size = New Size(983, 656)
+        gb_mostrarOpcion.Size = New Size(983, 721)
         gb_mostrarOpcion.TabIndex = 4
         gb_mostrarOpcion.TabStop = False
         ' 
         ' gb_historial
         ' 
         gb_historial.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        gb_historial.Controls.Add(txt_totalVenta)
         gb_historial.Controls.Add(dgv_detallesVenta)
         gb_historial.Controls.Add(dgv_historialVentas)
-        gb_historial.Location = New Point(6, 542)
+        gb_historial.Location = New Point(6, 545)
         gb_historial.Name = "gb_historial"
-        gb_historial.Size = New Size(971, 108)
+        gb_historial.Size = New Size(971, 170)
         gb_historial.TabIndex = 10
         gb_historial.TabStop = False
+        ' 
+        ' txt_totalVenta
+        ' 
+        txt_totalVenta.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txt_totalVenta.Location = New Point(762, 141)
+        txt_totalVenta.Name = "txt_totalVenta"
+        txt_totalVenta.PlaceholderText = "Total: $"
+        txt_totalVenta.ReadOnly = True
+        txt_totalVenta.Size = New Size(203, 23)
+        txt_totalVenta.TabIndex = 6
         ' 
         ' dgv_detallesVenta
         ' 
@@ -155,8 +167,9 @@ Partial Class vistaVendedor
         dgv_detallesVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgv_detallesVenta.Location = New Point(462, 22)
         dgv_detallesVenta.Name = "dgv_detallesVenta"
+        dgv_detallesVenta.ReadOnly = True
         dgv_detallesVenta.RowTemplate.Height = 25
-        dgv_detallesVenta.Size = New Size(503, 80)
+        dgv_detallesVenta.Size = New Size(503, 116)
         dgv_detallesVenta.TabIndex = 5
         ' 
         ' dgv_historialVentas
@@ -166,8 +179,9 @@ Partial Class vistaVendedor
         dgv_historialVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgv_historialVentas.Location = New Point(6, 22)
         dgv_historialVentas.Name = "dgv_historialVentas"
+        dgv_historialVentas.ReadOnly = True
         dgv_historialVentas.RowTemplate.Height = 25
-        dgv_historialVentas.Size = New Size(450, 80)
+        dgv_historialVentas.Size = New Size(450, 142)
         dgv_historialVentas.TabIndex = 4
         ' 
         ' gb_ventas
@@ -181,14 +195,14 @@ Partial Class vistaVendedor
         gb_ventas.Controls.Add(dgv_clientes)
         gb_ventas.Location = New Point(6, 338)
         gb_ventas.Name = "gb_ventas"
-        gb_ventas.Size = New Size(971, 198)
+        gb_ventas.Size = New Size(971, 207)
         gb_ventas.TabIndex = 9
         gb_ventas.TabStop = False
         ' 
         ' txt_cantidadVender
         ' 
         txt_cantidadVender.Anchor = AnchorStyles.Bottom
-        txt_cantidadVender.Location = New Point(489, 169)
+        txt_cantidadVender.Location = New Point(489, 178)
         txt_cantidadVender.Name = "txt_cantidadVender"
         txt_cantidadVender.PlaceholderText = "Cantidad de producto a vender"
         txt_cantidadVender.Size = New Size(194, 23)
@@ -211,6 +225,7 @@ Partial Class vistaVendedor
         dgv_prductosVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgv_prductosVenta.Location = New Point(427, 22)
         dgv_prductosVenta.Name = "dgv_prductosVenta"
+        dgv_prductosVenta.ReadOnly = True
         dgv_prductosVenta.RowTemplate.Height = 25
         dgv_prductosVenta.Size = New Size(538, 101)
         dgv_prductosVenta.TabIndex = 8
@@ -220,7 +235,7 @@ Partial Class vistaVendedor
         btn_cancelarVenta.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         btn_cancelarVenta.FlatAppearance.BorderColor = Color.Red
         btn_cancelarVenta.FlatStyle = FlatStyle.Flat
-        btn_cancelarVenta.Location = New Point(689, 169)
+        btn_cancelarVenta.Location = New Point(689, 178)
         btn_cancelarVenta.Name = "btn_cancelarVenta"
         btn_cancelarVenta.Size = New Size(140, 23)
         btn_cancelarVenta.TabIndex = 7
@@ -232,7 +247,7 @@ Partial Class vistaVendedor
         btn_confirmarVenta.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         btn_confirmarVenta.FlatAppearance.BorderColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
         btn_confirmarVenta.FlatStyle = FlatStyle.Flat
-        btn_confirmarVenta.Location = New Point(835, 169)
+        btn_confirmarVenta.Location = New Point(835, 178)
         btn_confirmarVenta.Name = "btn_confirmarVenta"
         btn_confirmarVenta.Size = New Size(130, 23)
         btn_confirmarVenta.TabIndex = 6
@@ -246,8 +261,9 @@ Partial Class vistaVendedor
         dgv_clientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgv_clientes.Location = New Point(6, 22)
         dgv_clientes.Name = "dgv_clientes"
+        dgv_clientes.ReadOnly = True
         dgv_clientes.RowTemplate.Height = 25
-        dgv_clientes.Size = New Size(415, 170)
+        dgv_clientes.Size = New Size(415, 179)
         dgv_clientes.TabIndex = 5
         ' 
         ' gb_producto
@@ -269,6 +285,7 @@ Partial Class vistaVendedor
         dgv_verProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgv_verProductos.Location = New Point(377, 22)
         dgv_verProductos.Name = "dgv_verProductos"
+        dgv_verProductos.ReadOnly = True
         dgv_verProductos.RowTemplate.Height = 25
         dgv_verProductos.Size = New Size(588, 282)
         dgv_verProductos.TabIndex = 3
@@ -367,7 +384,7 @@ Partial Class vistaVendedor
         Button3.Anchor = AnchorStyles.Bottom
         Button3.FlatStyle = FlatStyle.Popup
         Button3.Font = New Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point)
-        Button3.Location = New Point(397, 794)
+        Button3.Location = New Point(397, 859)
         Button3.Name = "Button3"
         Button3.Size = New Size(262, 61)
         Button3.TabIndex = 0
@@ -379,7 +396,7 @@ Partial Class vistaVendedor
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(192), CByte(192), CByte(255))
-        ClientSize = New Size(1287, 680)
+        ClientSize = New Size(1287, 745)
         Controls.Add(gb_mostrarOpcion)
         Controls.Add(GroupBox1)
         Name = "vistaVendedor"
@@ -388,6 +405,7 @@ Partial Class vistaVendedor
         GroupBox1.ResumeLayout(False)
         gb_mostrarOpcion.ResumeLayout(False)
         gb_historial.ResumeLayout(False)
+        gb_historial.PerformLayout()
         CType(dgv_detallesVenta, ComponentModel.ISupportInitialize).EndInit()
         CType(dgv_historialVentas, ComponentModel.ISupportInitialize).EndInit()
         gb_ventas.ResumeLayout(False)
@@ -430,4 +448,5 @@ Partial Class vistaVendedor
     Friend WithEvents dgv_prductosVenta As DataGridView
     Friend WithEvents lb_detalles As ListBox
     Friend WithEvents txt_cantidadVender As TextBox
+    Friend WithEvents txt_totalVenta As TextBox
 End Class

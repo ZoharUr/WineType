@@ -2,15 +2,12 @@
 Imports MySql.Data.MySqlClient
 Imports Mysqlx
 Imports Org.BouncyCastle.Pqc.Crypto.Falcon
-
 Public Class vistaVendedor
 
     Dim Conex As conexionSQL
     Dim nombreDB As String = Form1.nombreDB
-
     Dim prodSeleccionado(-1) As String
-
-
+    Dim precioProd(-1) As Double
 
     Private Sub vistaVendedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         gb_producto.Hide()
@@ -26,7 +23,6 @@ Public Class vistaVendedor
         lb_detalles.Items.Clear()
 
         Conex = New conexionSQL(nombreDB)
-
         Dim Sql As String
 
         Try
@@ -50,7 +46,7 @@ Public Class vistaVendedor
         End Try
 
         Try
-            Sql = $"SELECT * FROM Venta WHERE ID_Vendedor = '{Form1.idUsuarioActual}';"
+            Sql = $"SELECT ID_Venta, Fecha,ID_Cliente FROM Venta WHERE ID_Vendedor = {Form1.idUsuarioActual};"
             Conex.miDataAdapter = New MySqlDataAdapter(Sql, Conex.miConexion)
             Conex.miDataTable = New DataTable
             Conex.miDataAdapter.Fill(Conex.miDataTable)
@@ -59,9 +55,8 @@ Public Class vistaVendedor
             MsgBox("Error al mostrar el historial de ventas")
         End Try
 
-
         Try
-            Sql = $"SELECT ID_Venta, ID_Producto, CantidadVendida FROM VentaProducto WHERE ID_VentaProducto = 0;"
+            Sql = $"SELECT ID_Producto, CantidadVendida, Importes FROM VentaProducto WHERE ID_VentaProducto = 0;"
             Conex.miDataAdapter = New MySqlDataAdapter(Sql, Conex.miConexion)
             Conex.miDataTable = New DataTable
             Conex.miDataAdapter.Fill(Conex.miDataTable)
@@ -69,8 +64,6 @@ Public Class vistaVendedor
         Catch ex As Exception
             MsgBox("Error al mostrar el historial de ventas")
         End Try
-
-
     End Sub
 
     Private Sub btn_productos_Click(sender As Object, e As EventArgs) Handles btn_productos.Click
@@ -78,9 +71,7 @@ Public Class vistaVendedor
         gb_ventas.Hide()
         gb_historial.Hide()
 
-
         Conex = New conexionSQL(nombreDB)
-
         Dim Sql As String
 
         Try
@@ -92,8 +83,6 @@ Public Class vistaVendedor
         Catch ex As Exception
             MsgBox("Error al mostrar los productos")
         End Try
-
-
     End Sub
 
     Private Sub btn_crearProd_Click(sender As Object, e As EventArgs) Handles btn_crearProd.Click
@@ -120,24 +109,29 @@ Public Class vistaVendedor
                     Catch ex As Exception
                         MsgBox("Error al mostrar los productos")
                     End Try
-
                 Catch ex As Exception
                     MsgBox("ERROR: No se pudo ingresar el producto")
                 End Try
             End If
-
-
         End If
 
+        txt_descripcionProd.Text = ""
+        txt_precioProd.Text = ""
+        txt_stockProd.Text = ""
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btn_modificarProd.Click
         Conex = New conexionSQL(nombreDB)
         Dim Sql As String
 
-
-
-
+        '000
+        '001
+        '010
+        '011
+        '100
+        '101
+        '110
+        '111
 
         If txt_descripcionProd.Text = "" And txt_precioProd.Text = "" And txt_stockProd.Text = "" Then
 
@@ -260,7 +254,7 @@ Public Class vistaVendedor
             Conex.miDataTable = New DataTable
             Conex.miDataAdapter.Fill(Conex.miDataTable)
             dgv_verProductos.DataSource = Conex.miDataTable
-        Catch ex As Exception
+        Catch
             MsgBox("Error al mostrar los productos")
         End Try
 
@@ -272,8 +266,8 @@ Public Class vistaVendedor
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btn_eliminarProd.Click
         Conex = New conexionSQL(nombreDB)
-
         Dim Sql As String = $"DELETE FROM Producto WHERE ID_Producto = {dgv_verProductos.CurrentRow.Cells(0).Value};"
+
         Try
             Conex.EjecutarSQL(Sql)
             Conex.Dispose()
@@ -285,11 +279,11 @@ Public Class vistaVendedor
                 Conex.miDataTable = New DataTable
                 Conex.miDataAdapter.Fill(Conex.miDataTable)
                 dgv_verProductos.DataSource = Conex.miDataTable
-            Catch ex As Exception
+            Catch
                 MsgBox("Error al mostrar los productos")
             End Try
 
-        Catch ex As Exception
+        Catch
             MsgBox("ERROR: No se pudo eliminar el producto")
         End Try
     End Sub
@@ -299,6 +293,8 @@ Public Class vistaVendedor
 
         gb_ventas.Show()
         gb_ventas.Location = New System.Drawing.Point(6, 22)
+        gb_ventas.Height = 310
+
 
         gb_historial.Hide()
 
@@ -312,24 +308,20 @@ Public Class vistaVendedor
             Conex.miDataTable = New DataTable
             Conex.miDataAdapter.Fill(Conex.miDataTable)
             dgv_prductosVenta.DataSource = Conex.miDataTable
-        Catch ex As Exception
+        Catch
             MsgBox("Error al mostrar los productos")
         End Try
-
     End Sub
 
     Private Sub btn_historialVentas_Click(sender As Object, e As EventArgs) Handles btn_historialVentas.Click
         gb_producto.Hide()
         gb_ventas.Hide()
-
         gb_historial.Show()
         gb_historial.Location = New System.Drawing.Point(6, 22)
-
+        gb_historial.Height = 310
     End Sub
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btn_cerrarSesion.Click
-
 
         Conex = New conexionSQL
         Try
@@ -346,23 +338,18 @@ Public Class vistaVendedor
         dgv_prductosVenta.DataSource = Nothing
         dgv_verProductos.DataSource = Nothing
 
-
         dgv_clientes.Rows.Clear()
         dgv_detallesVenta.Rows.Clear()
         dgv_historialVentas.Rows.Clear()
         dgv_prductosVenta.Rows.Clear()
         dgv_verProductos.Rows.Clear()
 
-
         Form1.Show()
         Me.Close()
 
     End Sub
 
-
     Private Sub dgv_clientes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_clientes.CellContentClick
-
-        'MsgBox(dgv_clientes.CurrentRow.Cells(0).Value)
         dgv_clientes.Enabled = False
         dgv_prductosVenta.Enabled = True
         txt_cantidadVender.Text = ""
@@ -379,8 +366,12 @@ Public Class vistaVendedor
         Else
             Dim Sql As String
             Conex = New conexionSQL(nombreDB)
+
             Sql = $"SELECT Stock FROM Producto WHERE ID_Producto = {dgv_prductosVenta.CurrentRow.Cells(0).Value};"
             Dim stockActual As Integer = Convert.ToInt32(Conex.EjecutarSQLResp(Sql))
+
+            Sql = $"SELECT Precio FROM Producto WHERE ID_Producto = {dgv_prductosVenta.CurrentRow.Cells(0).Value};"
+            Dim precioActual As Integer = Convert.ToInt32(Conex.EjecutarSQLResp(Sql))
 
             If stockActual >= Val(txt_cantidadVender.Text.Trim()) Then
 
@@ -389,7 +380,10 @@ Public Class vistaVendedor
                 ReDim Preserve prodSeleccionado(prodSeleccionado.Length)
                 prodSeleccionado(prodSeleccionado.Length - 1) = txt_cantidadVender.Text.Trim()
 
-                lb_detalles.Items.Add($"{dgv_prductosVenta.CurrentRow.Cells(1).Value} - Cantidad: {txt_cantidadVender.Text}")
+                ReDim Preserve precioProd(precioProd.Length)
+                precioProd(precioProd.Length - 1) = precioActual * Val(txt_cantidadVender.Text.Trim())
+
+                lb_detalles.Items.Add($"{dgv_prductosVenta.CurrentRow.Cells(1).Value} - Cantidad: {txt_cantidadVender.Text} - Importe: {precioProd(precioProd.Length - 1)}")
 
                 stockActual -= Val(txt_cantidadVender.Text.Trim())
                 Sql = $"USE {nombreDB};UPDATE Producto Set Stock = '{stockActual}' WHERE ID_Producto = '{dgv_prductosVenta.CurrentRow.Cells(0).Value}'"
@@ -406,24 +400,16 @@ Public Class vistaVendedor
                 End Try
 
                 Conex.Dispose()
-
             Else
                 MsgBox("No puede seleccionar vender una cantidad mayor de productos de la que hay en el stock.", MsgBoxStyle.Exclamation, "Stock Insuficiente")
             End If
         End If
-
-
-
-
     End Sub
 
     Private Sub btn_cancelarVenta_Click(sender As Object, e As EventArgs) Handles btn_cancelarVenta.Click
 
         Conex = New conexionSQL(nombreDB)
-
         Dim Sql As String
-
-        'MsgBox(prodSeleccionado.Length())
 
         For i = 0 To prodSeleccionado.Length() - 2 Step 2
             Sql = $"SELECT Stock FROM Producto WHERE ID_Producto = {prodSeleccionado(i)};"
@@ -443,6 +429,7 @@ Public Class vistaVendedor
         End Try
 
         ReDim prodSeleccionado(-1)
+        ReDim precioProd(-1)
         dgv_clientes.Enabled = True
         dgv_prductosVenta.Enabled = False
         txt_cantidadVender.Text = ""
@@ -463,17 +450,19 @@ Public Class vistaVendedor
             Sql = $"USE {nombreDB};INSERT INTO Venta(Fecha, ID_Vendedor, ID_Cliente) VALUES('{fechaSQL}','{Form1.idUsuarioActual}','{dgv_clientes.CurrentRow.Cells(0).Value}')"
             Conex.EjecutarSQL(Sql)
 
-            ' Obtener el ID_Venta generado en la inserción anterior
-            Dim idVenta As String = ObtenerIDVenta() ' Función para obtener el ID_Venta, tendrás que implementarla
+            Dim idVenta As String = ObtenerIDVenta()
 
+            Dim m As Integer = 0 ' 
             For i = 0 To prodSeleccionado.Length() - 2 Step 2
-                Sql = $"USE {nombreDB}; INSERT INTO VentaProducto(ID_Venta, ID_Producto, CantidadVendida) VALUES('{idVenta}','{prodSeleccionado(i)}', '{prodSeleccionado(i + 1)}')"
+                Sql = $"USE {nombreDB}; INSERT INTO VentaProducto(ID_Venta, ID_Producto, CantidadVendida, Importes) VALUES('{idVenta}','{prodSeleccionado(i)}', '{prodSeleccionado(i + 1)}','{precioProd(m)}')"
                 Conex.EjecutarSQL(Sql)
+                m += 1
             Next
 
             MsgBox("Venta cerrada exitosamente")
 
             ReDim prodSeleccionado(-1)
+            ReDim precioProd(-1)
             dgv_clientes.Enabled = True
             dgv_prductosVenta.Enabled = False
             txt_cantidadVender.Text = ""
@@ -493,7 +482,7 @@ Public Class vistaVendedor
             End Try
 
             Try
-                Sql = "SELECT * FROM Venta;"
+                Sql = $"SELECT ID_Venta, Fecha,ID_Cliente FROM Venta WHERE ID_Vendedor = {Form1.idUsuarioActual};"
                 Conex.miDataAdapter = New MySqlDataAdapter(Sql, Conex.miConexion)
                 Conex.miDataTable = New DataTable
                 Conex.miDataAdapter.Fill(Conex.miDataTable)
@@ -501,6 +490,7 @@ Public Class vistaVendedor
             Catch ex As Exception
                 MsgBox("Error al mostrar el historial de ventas")
             End Try
+
             Conex.Dispose()
         Catch ex As Exception
             MsgBox("Error al cerrar la venta." & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Insertar Datos")
@@ -509,32 +499,23 @@ Public Class vistaVendedor
 
     End Sub
 
-
-
-
     Private Function ObtenerIDVenta() As Integer
-
         Conex = New conexionSQL(nombreDB)
         Dim idVenta As Integer = 0
-
         Try
             Dim Sql As String = $"USE {nombreDB}; SELECT MAX(ID_Venta) FROM Venta WHERE ID_Vendedor = '{Form1.idUsuarioActual}'"
             idVenta = Convert.ToInt32(Conex.EjecutarSQLResp(Sql))
         Catch ex As Exception
             MsgBox("Error al obtener el ID de venta." & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Obtener ID de Venta")
         End Try
-
         Return idVenta
-
     End Function
-
-
 
     Private Sub dgv_historialVentas_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_historialVentas.CellContentClick
         Dim Sql As String
         Conex = New conexionSQL(nombreDB)
         Try
-            Sql = $"SELECT ID_Venta, ID_Producto, CantidadVendida FROM VentaProducto WHERE ID_Venta ='{dgv_historialVentas.CurrentRow.Cells(0).Value}';"
+            Sql = $"SELECT ID_Producto, CantidadVendida, Importes FROM VentaProducto WHERE ID_Venta ='{dgv_historialVentas.CurrentRow.Cells(0).Value}';"
             Conex.miDataAdapter = New MySqlDataAdapter(Sql, Conex.miConexion)
             Conex.miDataTable = New DataTable
             Conex.miDataAdapter.Fill(Conex.miDataTable)
@@ -542,5 +523,15 @@ Public Class vistaVendedor
         Catch ex As Exception
             MsgBox("Error al mostrar el historial de ventas")
         End Try
+
+        Try
+            Sql = $"SELECT SUM(Importes) FROM VentaProducto WHERE ID_Venta ='{dgv_historialVentas.CurrentRow.Cells(0).Value}';"
+
+            txt_totalVenta.Text = $"Total: ${Convert.ToString(Conex.EjecutarSQLResp(Sql))}"
+
+        Catch ex As Exception
+            MsgBox("Error al sumar los montos de las ventas." & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Error de consulta")
+        End Try
     End Sub
+
 End Class
